@@ -16,9 +16,9 @@ Routes and controllers structured
 Text → Router → Multiple APIs → Analyzer → Response
 
 APIs currently used:
-Wikipedia 
-GNews 
-NewsAPI 
+Wikipedia ,
+GNews ,
+NewsAPI ,
 DuckDuckGo 
 
 ⚠ Current Limitation
