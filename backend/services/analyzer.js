@@ -8,10 +8,14 @@ export function analyze({ news = [], wiki, duck = [] }) {
   }
 
   if (news.length >= 3) {
-    score += 60;
+    score += 40;
     reasons.push("Multiple reliable news sources found");
   } 
-  else if (news.length === 0) {
+  else if (news.length > 0) {
+    score += 15;
+    reasons.push("Some news coverage found");
+  } 
+  else {
     score -= 40;
     reasons.push("No trusted news sources support this claim");
   }
@@ -28,10 +32,5 @@ export function analyze({ news = [], wiki, duck = [] }) {
     : score <= 35 ? "Likely False"
     : "Unclear";
 
-  return {
-    score,
-    verdict,
-    reason: reasons
-  };
+  return { score, verdict, reason: reasons };
 }
-

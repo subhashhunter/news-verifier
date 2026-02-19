@@ -4,6 +4,8 @@ export function routeQuery(text) {
   return {
     useNews: true,
     useWiki: true,
-    useDuck: true
+    useDuck: true,
+    newsApi:true
+
   };
 }
