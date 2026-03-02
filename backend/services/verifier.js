@@ -1,6 +1,6 @@
 import searchWiki from "./sources/wiki.js";
 import searchDuck from "./sources/duck.js";
-import { analyze } from "./analyzer.js";
+import analyzeWithAI from "./aiAnalyzer.js";
 import { routeQuery } from "./router.js";
 import searchGNews from "./sources/gnews.js";
 import searchNewsAPI from "./sources/newsapi.js";
@@ -15,17 +15,17 @@ export default async function verifyText(text) {
     route.useDuck ? searchDuck(text) : []
   ]);
 
-  // combine both news sources
+ 
   const news = [...gnews, ...newsapi];
 
-  const result = analyze({ news, wiki, duck });
+  const aiResult = await analyzeWithAI(text, news, wiki);
 
   return {
-    text,
-    accuracy: result.score,
-    verdict: result.verdict,
-    wikiFound: !!wiki,
-    newsCount: news.length,
-    reason: result.reason
-  };
+  text,
+  accuracy: aiResult?.confidence ,
+  verdict: aiResult?.verdict ,
+  wikiFound: !!wiki,
+  newsCount: news.length,
+  reason: aiResult?.reason
+};
 }
